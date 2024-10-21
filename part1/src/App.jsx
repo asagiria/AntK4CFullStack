@@ -13,12 +13,23 @@ const App = () => {
     'The only way to go fast, is to go well.'
   ]
   const [selected, setSelected] = useState(0)
+  const [points, setPoints] = useState(new Uint8Array(anecdotes.length))
+  //const points = new Uint8Array(anecdotes.length)
+  //let new_points = [...points] 
   const select_anecdote = () => setSelected(Math.floor(Math.random() * anecdotes.length))
+  const vote = () => {
+	  //new_points = [...points] 
+	  //points[selected]+=1
+	  points[selected]+=1
+	  setPoints([...points])
+  };
   
   return (
     <div>
-		<button onClick={select_anecdote}>anecdote</button>
+		<button onClick={vote}>vote</button>
+		<button onClick={select_anecdote}>next anecdote</button>
 		<p>{anecdotes[selected]}</p>
+		<p>has {points[selected]} points</p>
     </div>
   )
 }
